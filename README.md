@@ -90,7 +90,7 @@ Export-AzResourceGroup -ResourceGroupName "Pasztorne_P8YRZ8" -OutputFormat Bicep
 Ez a módszer SQL meta‑erőforrások miatt hibát jelzett, és üres fájlt eredményezett.
 ```
 JSON export (sikeres)
-powershell
+```powershell
 Export-AzResourceGroup -ResourceGroupName "Pasztorne_P8YRZ8" -OutputFormat Json
 Ez létrehozta a Pasztorne_P8YRZ8.json fájlt, amely tartalmazza:
 a Resource Group erőforrásait,
@@ -98,6 +98,7 @@ a virtuális gépet,
 a hálózati elemeket,
 az SQL szervert és adatbázist (a nem exportálható metaelemek nélkül).
 A JSON sablon feltölthető GitHubra, és újra létrehozható vele a környezet.
+```
 
 5. Képernyőképek
 A projekt részeként készítettem képernyőképeket az Azure Portalról:
