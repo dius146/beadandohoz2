@@ -1,4 +1,4 @@
-# Azure Felhőtechnológiák – Erőforrások Létrehozása és Dokumentáció
+## Azure Felhőtechnológiák – Erőforrások Létrehozása és Dokumentáció
 
 Ez a projekt bemutatja, hogyan hoztam létre egy teljes Azure környezetet a *Felhőtechnológiák gyakorlat* tantárgy beadandó feladatához.  
 A környezet tartalmaz egy erőforráscsoportot, egy Windows alapú virtuális gépet, valamint egy Azure SQL szervert és adatbázist.  
@@ -12,6 +12,7 @@ Első lépésként létrehoztam egy új Resource Groupot, amely minden további 
 - Név: `Pasztorne_P8YRZ8`
 - Régió: *West Europe*
 - *Review + Create*
+<img src="Munkafolyamatok/vm.png" width="500">
 
 Ez az erőforráscsoport tartalmazza a virtuális gépet, a hálózati elemeket és az SQL adatbázist.
 
@@ -27,13 +28,13 @@ A következő lépés egy Windows Server alapú virtuális gép létrehozása vo
 - VM méret: B‑sorozat (pl. B1s)
 - Admin felhasználónév + jelszó
 - RDP port engedélyezése (3389)
-
+<img src="Munkafolyamatok/vm.png" width="500">
 A VM létrejötte után NSG (Network Security Group) szabályok ellenőrzése és javítása
 A virtuális gép létrejötte után megpróbáltam RDP‑vel csatlakozni hozzá, azonban a kapcsolat nem sikerült.
 A hibaüzenet egyértelműen jelezte, hogy a 3389‑es RDP port nem volt elérhető a saját IP‑címemről.
 
 Ez egy gyakori probléma, mert az Azure alapértelmezés szerint szigorúan védi a bejövő forgalmat, és csak akkor engedi be az RDP‑t, ha azt kifejezetten engedélyezzük.
-
+<img src="Munkafolyamatok/vm.png" width="500">
 ### 2.1. A hiba oka
 A VM létrejött ugyan, de a hozzá tartozó Network Security Group (NSG) nem tartalmazott olyan szabályt, amely:
 bejövő (Inbound) irányban
@@ -83,12 +84,13 @@ Az adatbázis létrejötte után létrehoztam egy **4 soros táblát**, és beá
 ---
 ## 4. A teljes infrastruktúra exportálása (ARM sablon)
 A beadandó részeként exportáltam a teljes Resource Groupot ARM sablonként, hogy újra létrehozható legyen.
-
+<img src="Munkafolyamatok/vm.png" width="500">
 ### Bicep export (első próbálkozás)
 ```powershell
 Export-AzResourceGroup -ResourceGroupName "Pasztorne_P8YRZ8" -OutputFormat Bicep
 Ez a módszer SQL meta‑erőforrások miatt hibát jelzett, és üres fájlt eredményezett.
 ```
+<img src="Munkafolyamatok/vm.png" width="500">
 JSON export (sikeres)
 ```powershell
 Export-AzResourceGroup -ResourceGroupName "Pasztorne_P8YRZ8" -OutputFormat Json
@@ -99,8 +101,8 @@ a hálózati elemeket,
 az SQL szervert és adatbázist (a nem exportálható metaelemek nélkül).
 A JSON sablon feltölthető GitHubra, és újra létrehozható vele a környezet.
 ```
-
-5. Képernyőképek
+<img src="Munkafolyamatok/vm.png" width="500">
+## 5. Képernyőképek
 A projekt részeként készítettem képernyőképeket az Azure Portalról:
 Resource Group hiányos (elfelejtettem képernyőképet készíteni)
 Virtuális gép
@@ -109,21 +111,22 @@ Hálózati beállítások
 RDP kapcsolat
 Exportált sablon
 A képek a munkafolyamat mappában találhatók.
+---
 
-6. Projektstruktúra
+## 6. Projektstruktúra
 Kód
 /infrastructure/
     Pasztorne_P8YRZ8.json
-/screenshots/
+/Munkafolyamat/
     (Azure Portal képernyőképek)
 README.md
+--- 
 
-Összegzés
+## Összegzés
 A projekt során sikeresen létrehoztam egy teljes Azure környezetet, amely tartalmaz:
 Erőforráscsoportot
 Windows alapú virtuális gépet
 Azure SQL szervert és adatbázist
 Exportált ARM sablont
 A környezet működőképes, dokumentált, és GitHubon keresztül újra létrehozható.
-Kód
 ---
