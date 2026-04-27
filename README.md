@@ -88,7 +88,7 @@ A beadandó részeként exportáltam a teljes Resource Groupot ARM sablonként, 
 ```powershell
 Export-AzResourceGroup -ResourceGroupName "Pasztorne_P8YRZ8" -OutputFormat Bicep
 Ez a módszer SQL meta‑erőforrások miatt hibát jelzett, és üres fájlt eredményezett.
-
+```
 JSON export (sikeres)
 powershell
 Export-AzResourceGroup -ResourceGroupName "Pasztorne_P8YRZ8" -OutputFormat Json
